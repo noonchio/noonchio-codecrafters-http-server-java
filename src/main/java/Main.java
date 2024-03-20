@@ -61,6 +61,7 @@ public class Main {
          OutputStream outputStream = clientSocket.getOutputStream();
          outputStream.write(httpResponse.getBytes(StandardCharsets.UTF_8));
          outputStream.flush();
+         in.close();
        }
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
