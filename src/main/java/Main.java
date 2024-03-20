@@ -49,11 +49,11 @@ public class Main {
            String[] responseStrings = path.split("/");
            String responseString = responseStrings[2];
            System.out.println(responseString);
-           httpResponse = "HTTP/1.1 200 OK\r\n\r\n" +
-                   "Content-Type: text/plain\r\n\r\n" +
-                   "Content-Length: " +responseString.length()+ "\r\n\r\n"+
-                   "\r\n"+
+           httpResponse = "HTTP/1.1 200 OK\r\n" +
+                   "Content-Type: text/plain\r\n" +
+                   "Content-Length: " +responseString.length()+ "\r\n"+
                    responseString;
+           System.out.println(httpResponse);
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
          }
