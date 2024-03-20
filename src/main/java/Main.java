@@ -47,7 +47,7 @@ public class Main {
            httpResponse = "HTTP/1.1 200 OK\r\n\r\n";
          } else if (path.startsWith("/echo/")) {
            String[] responseStrings = path.split("/");
-           String responseString = responseStrings[1];
+           String responseString = responseStrings[2];
            System.out.println(responseString);
            httpResponse = "HTTP/1.1 200 OK\r\n\r\n" +
                    "Content-Type: text/plain\r\n\r\n" +
