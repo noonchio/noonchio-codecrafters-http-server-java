@@ -43,14 +43,15 @@ public class Main {
          System.out.println("-------> " + path);
 
          String httpResponse;
-         if(path.startsWith("/echo/")){
+         if(path.equals("/")){
+           httpResponse = "HTTP/1.1 200 OK\r\n\r\n";
+         } else if (path.startsWith("/echo/")) {
            String responseString = path.substring(6);
-
            httpResponse = "HTTP/1.1 200 OK\r\n\r\n" +
-                          "Content-Type: text/plain\r\n\r\n" +
-                          "Content-Length: " +responseString.getBytes(StandardCharsets.UTF_8).length+ "\r\n\r\n"+
-                          "\r\n\r\n"+
-                           responseString;
+                   "Content-Type: text/plain\r\n\r\n" +
+                   "Content-Length: " +responseString.getBytes(StandardCharsets.UTF_8).length+ "\r\n\r\n"+
+                   "\r\n\r\n"+
+                   responseString;
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
          }
