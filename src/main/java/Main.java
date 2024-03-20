@@ -55,7 +55,8 @@ public class Main {
                    responseString;
            System.out.println(httpResponse);
          } else if (path.startsWith("/user-agent")) {
-           String header = requestLines[2];
+           String header = requestLines[3];
+           System.out.println("Header  " + header);
            String[] values = header.split(":");
            String value = values[1];
            httpResponse = "HTTP/1.1 200 OK\r\n"+
@@ -63,6 +64,7 @@ public class Main {
                    "Content-Length: " +value.getBytes(StandardCharsets.UTF_8).length+ "\r\n"+
                    "\r\n"+
                    value;
+           System.out.println(value);
 
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
