@@ -40,25 +40,25 @@ public class Main {
          String startLine = requestLines[0];
          String[] splitStartLine = startLine.split(" ");
          String path = splitStartLine[1];
-         String httpResponse = "";
-         if(path.equals("/")){
-           httpResponse = "HTTP/1.1 200 OK\r\n\r\n";
+         System.out.println("-------> " + path);
+
+         String httpResponse;
+         if(path.startsWith("/echo/")){
+           String responseString = path.substring(6);
+
+           httpResponse = "HTTP/1.1 200 OK\r\n\r\n" +
+                          "Content-Type: text/plain\r\n\r\n" +
+                          "Content-Length: " +responseString.getBytes(StandardCharsets.UTF_8).length+ "\r\n\r\n"+
+                          "\r\n\r\n"+
+                           responseString;
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
          }
 
-         //Prepare HTTP response
-
-
          OutputStream outputStream = clientSocket.getOutputStream();
-
          outputStream.write(httpResponse.getBytes(StandardCharsets.UTF_8));
          outputStream.flush();
        }
-
-
-
-
      } catch (IOException e) {
        System.out.println("IOException: " + e.getMessage());
      }
