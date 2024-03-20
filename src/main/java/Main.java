@@ -52,7 +52,7 @@ public class Main {
            httpResponse = "HTTP/1.1 200 OK\r\n\r\n" +
                    "Content-Type: text/plain\r\n\r\n" +
                    "Content-Length: " +responseString.length()+ "\r\n\r\n"+
-                   "\r\n\r\n"+
+                   "\r\n"+
                    responseString;
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
