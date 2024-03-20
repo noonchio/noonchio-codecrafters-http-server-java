@@ -57,7 +57,7 @@ public class Main {
          } else if (path.startsWith("/user-agent")) {
            String header = requestLines[2];
            System.out.println("Header  " + header);
-           String[] values = header.split(":");
+           String[] values = header.split(": ");
            String value = values[1];
            httpResponse = "HTTP/1.1 200 OK\r\n"+
                    "Content-Type: text/plain\r\n"+
