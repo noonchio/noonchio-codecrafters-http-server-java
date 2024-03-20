@@ -32,7 +32,7 @@ public class Main {
            requestBuilder.append(line + "\n");
          }
          String request = requestBuilder.toString();
-         System.out.println("Request from client:\n" + request);
+         System.out.println("Request from client:\n"+ request);
 
          String[] requestLines = request.split("\n");
          System.out.println("-------> "+requestLines[0]);
@@ -48,12 +48,22 @@ public class Main {
          } else if (path.startsWith("/echo/")) {
            String responseString = path.substring(6);
            System.out.println(responseString);
-           httpResponse = "HTTP/1.1 200 OK\r\n" +
-                   "Content-Type: text/plain\r\n" +
+           httpResponse = "HTTP/1.1 200 OK\r\n"+
+                   "Content-Type: text/plain\r\n"+
                    "Content-Length: " +responseString.getBytes(StandardCharsets.UTF_8).length+ "\r\n"+
-                   "\r\n" +
+                   "\r\n"+
                    responseString;
            System.out.println(httpResponse);
+         } else if (path.startsWith("/user-agent")) {
+           String header = requestLines[2];
+           String[] values = header.split(":");
+           String value = values[1];
+           httpResponse = "HTTP/1.1 200 OK\r\n"+
+                   "Content-Type: text/plain\r\n"+
+                   "Content-Length: " +value.getBytes(StandardCharsets.UTF_8).length+ "\r\n"+
+                   "\r\n"+
+                   value;
+
          } else {
            httpResponse = "HTTP/1.1 404 Not Found\r\n\r\n";
          }
