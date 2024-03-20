@@ -51,7 +51,7 @@ public class Main {
            System.out.println(responseString);
            httpResponse = "HTTP/1.1 200 OK\r\n" +
                    "Content-Type: text/plain\r\n" +
-                   "Content-Length: " +responseString.length()+ "\r\n"+
+                   "Content-Length: " +responseString.getBytes(StandardCharsets.UTF_8).length+ "\r\n"+
                    "\r\n" +
                    responseString;
            System.out.println(httpResponse);
