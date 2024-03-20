@@ -55,7 +55,7 @@ public class Main {
                    responseString;
            System.out.println(httpResponse);
          } else if (path.startsWith("/user-agent")) {
-           String header = requestLines[3];
+           String header = requestLines[2];
            System.out.println("Header  " + header);
            String[] values = header.split(":");
            String value = values[1];
