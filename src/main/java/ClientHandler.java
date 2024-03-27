@@ -53,6 +53,10 @@ public class ClientHandler implements Runnable {
 
                     // Saving the file content
                     Files.write(filePath, content.getBytes(StandardCharsets.UTF_8));
+
+                    // Respond with 201 Created
+                    String response = "HTTP/1.1 201 Created\r\n\r\n";
+                    out.write(response.getBytes(StandardCharsets.UTF_8));
                 }
             }
             
