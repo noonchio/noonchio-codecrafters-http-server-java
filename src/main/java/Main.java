@@ -8,7 +8,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class Main {
+    static String directoryPath = "";
   public static void main(String[] args) {
+      for (int i = 0; i < args.length; i++ ) {
+          if ("--directory".equals(args[i]) && i + 1 < args.length) {
+              directoryPath = args[i + 1];
+              break;
+          }
+      }
+
     System.out.println("Logs from your program will appear here!");
 
      ServerSocket serverSocket = null;
