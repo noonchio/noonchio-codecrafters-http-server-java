@@ -35,6 +35,27 @@ public class ClientHandler implements Runnable {
             System.out.println("-------> " + path);
 
             String httpResponse="";
+            // Handling POST request
+            if (startLine.startsWith("POST /files/") && path.startsWith("/files/")) {
+                String filename = path.substring(7);
+                Path filePath = Paths.get(basePath, filename).normalize();
+
+                if(!filePath.startsWith(basePath)) {
+                    String response = "HTTP/1.1 403 Forbidden\r\n\r\n";
+                    out.write(response.getBytes(StandardCharsets.UTF_8));
+                } else {
+                    // Prepare to read the request body (file content)
+                    StringBuilder payload = new StringBuilder();
+                    while(in.ready()) {
+                        payload.append((char) in.read());
+                    }
+                    String content = payload.toString();
+
+                    // Saving the file content
+                    Files.write(filePath, content.getBytes(StandardCharsets.UTF_8));
+                }
+            }
+            
             if (path.startsWith("/files/")) {
                 String filename = path.substring(7);
                 Path filePath = Paths.get(basePath, filename).normalize();
